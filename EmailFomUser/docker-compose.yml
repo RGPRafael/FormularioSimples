@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: My7Pass@Word_9_8A_zE
+      MYSQL_DATABASE: FormUser
+    networks:
+      - springboot-mysql-net
+      
+  angular-app:
+    image: angular-app-image
+    build:
+      context: ./EmailFormFront/emailform
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    networks:
+      - springboot-angular-net
+    restart: on-failure
+
+  springboot-docker1:
+    container_name: springboot-docker1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+    networks:
+      - springboot-mysql-net
+    restart: on-failure
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/FormUser?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: My7Pass@Word_9_8A_zE
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_SHOW_SQL: "true"
+      SPRING_PROFILES_ACTIVE: docker
+
+networks:
+  springboot-mysql-net:
+   
+  springboot-angular-net:
