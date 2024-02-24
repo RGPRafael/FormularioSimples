@@ -1,7 +1,11 @@
 
 Executar docker compose :
 
-\EmailFomUser\EmailFomUser docker-compose up
+Abra o CMD ou o terminal e va ate onde se encontra o arquivo docker compose.yml  ---> \EmailFomUser\EmailFomUser
+
+ele executara as imagens necessarias e ira fazer o conteiner
+
+execute o comando : docker-compose up
 
 
 <img src="formsimples.png" style="width: 950px; height: 350px;">
