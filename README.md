@@ -4,7 +4,7 @@ Executar docker compose :
 \EmailFomUser\EmailFomUser docker-compose up
 
 
-<img src="formsimples.png" style="width: 500px; height: 300px;">
+<img src="formsimples.png" style="width: 1000px; height: 350px;">
 
 
 Consulta:
